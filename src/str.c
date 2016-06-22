@@ -29,25 +29,21 @@ Str *str_new()
     return tmp;
 }
 
-char *str_val(Object *obj)
+char *str_val(Str *this)
 {
-    Str *this = (Str*)obj;
     assert(this->parent.type == 44);
     return this->val;
 }
 
-void str_setval(Object *obj, char *val)
+void str_setval(Str *this, char *val)
 {
-    Str *this = (Str*)obj;
     assert(this->parent.type == 44);
     this->val = val;
 }
 
-void str_del(Object *obj) {
-    (void)obj;
+void str_del(Str *this) {
+    assert(this->parent.type == 44);
 
-    Str *this = (Str*)obj;
     printf("STR DTOR\n");
-
-    this->parent.ops->dtor(obj);
+    this->parent.ops->dtor(&this->parent);
 }
