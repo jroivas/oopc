@@ -1,6 +1,7 @@
 #ifndef OBJECT_H
 #define OBJECT_H
 
+#define _(X) ops->X
 struct _Object;
 typedef struct _Object Object;
 
@@ -14,6 +15,7 @@ typedef struct _Object {
 } Object;
 
 Object *object_new();
+void object_init(Object *obj);
 int object_type(Object *);
 
 #endif
