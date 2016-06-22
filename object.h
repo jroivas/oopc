@@ -7,6 +7,7 @@ typedef struct _Object Object;
 
 typedef struct _ObjectOps {
     int (*type)(Object *);
+    void (*dtor)(Object *);
 } ObjectOps;
 
 typedef struct _Object {
@@ -17,5 +18,6 @@ typedef struct _Object {
 Object *object_new();
 void object_init(Object *obj, ObjectOps *ops);
 int object_type(Object *);
+void object_del(Object *);
 
 #endif

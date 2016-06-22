@@ -8,6 +8,7 @@ typedef struct _Str Str;
 
 typedef struct _StrOps {
     int (*type)(Object *);
+    void (*dtor)(Object *);
     char *(*val)(Object *);
     void (*set)(Object *, char *);
 } StrOps;
@@ -22,5 +23,6 @@ Str *str_new();
 void str_init(Str *, StrOps *ops);
 char *str_val(Object *);
 void str_setval(Object *, char *);
+void str_del(Object *);
 
 #endif

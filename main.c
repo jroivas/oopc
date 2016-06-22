@@ -17,5 +17,13 @@ int main() {
     printf("%s\n", st->_(val)((Object*)st));
     printf("%d\n", st->_(type)((Object*)st));
 
+    // Should fail
+    //st->_(set)((Object*)obj, "tst1");
+
+    // Destructors
+    st->_(dtor)((Object*)st);
+
+    obj->_(dtor)((Object*)obj);
+
     return 0;
 }
