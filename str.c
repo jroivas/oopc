@@ -7,30 +7,31 @@ static StrOps str_ops = {
     .set = str_setval
 };
 
-void str_init(Str *obj)
+void str_init(Str *obj, StrOps *ops)
 {
-    obj->ops = &str_ops;
+    object_init((Object*)obj, (ObjectOps*)ops);
+    obj->parent.type = 44;
+
+    obj->ops = ops;
     obj->val = "";
 }
 
 Str *str_new()
 {
     Str *tmp = calloc(1, sizeof(Str));
-    object_init(&tmp->parent);
-
-    tmp->parent.type = 44;
-    str_init(tmp);
-    //tmp->ops->parent = tmp->parent.ops;
+    str_init(tmp, &str_ops);
 
     return tmp;
 }
 
-char *str_val(Str *obj)
+char *str_val(Object *obj)
 {
-    return obj->val;
+    Str *this = (Str*)obj;
+    return this->val;
 }
 
-void str_setval(Str *obj, char *val)
+void str_setval(Object *obj, char *val)
 {
-    obj->val = val;
+    Str *this = (Str*)obj;
+    this->val = val;
 }

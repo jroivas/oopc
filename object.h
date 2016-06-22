@@ -15,7 +15,7 @@ typedef struct _Object {
 } Object;
 
 Object *object_new();
-void object_init(Object *obj);
+void object_init(Object *obj, ObjectOps *ops);
 int object_type(Object *);
 
 #endif

@@ -7,10 +7,9 @@ struct _Str;
 typedef struct _Str Str;
 
 typedef struct _StrOps {
-    //ObjectOps *parent;
     int (*type)(Object *);
-    char *(*val)(Str *);
-    void (*set)(Str *, char *);
+    char *(*val)(Object *);
+    void (*set)(Object *, char *);
 } StrOps;
 
 typedef struct _Str {
@@ -20,8 +19,8 @@ typedef struct _Str {
 } Str;
 
 Str *str_new();
-void str_init(Str *);
-char *str_val(Str *);
-void str_setval(Str *, char *);
+void str_init(Str *, StrOps *ops);
+char *str_val(Object *);
+void str_setval(Object *, char *);
 
 #endif
